@@ -1,24 +1,15 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../Redux/Contacts/contact-slice';
-import { getAllContacts } from '../../Redux/Contacts/contact-selectors';
+import { useDispatch } from 'react-redux';
+import { fetchAddContact } from '../../Redux/Contacts/contact-operations';
 
 export default function Form () {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(getAllContacts);
 
   const formSumbit = e => {
     e.preventDefault();
-    const nameToAdd = name;
-    const addCheck = contacts?.find(({ name }) => name.includes(nameToAdd));
-    if (!addCheck) {
-      dispatch(addContact({ name, number }));
-    } else {
-      alert(`${nameToAdd} is already in contacts`);
-    }
+    dispatch(fetchAddContact({ name, number }));
     reset();
   };
 
@@ -62,4 +53,3 @@ export default function Form () {
   );
 };
 
-Form.propTypes = { onSubmit: PropTypes.func };

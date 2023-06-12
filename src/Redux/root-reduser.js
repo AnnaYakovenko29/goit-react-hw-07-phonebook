@@ -1,16 +1,10 @@
-import filterReducer from './Filter/filter-slice';
-import contactReducer from './Contacts/contact-slice';
-import storage from 'redux-persist/lib/storage';
+import filterReducer from '../Redux/Filter/filter-slice';
+import contactReducer from '../Redux/Contacts/contact-slice';
 import { combineReducers } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
 
 const rootReducer = combineReducers({
   contacts: contactReducer,
   filter: filterReducer,
 });
-const persistConfig = {
-  key: 'contacts',
-  storage,
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-export default persistedReducer;
+
+export default rootReducer;
