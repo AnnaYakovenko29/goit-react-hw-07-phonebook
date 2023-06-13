@@ -28,11 +28,11 @@ export const ContactList = () => {
     <>
     {isLoading && <p>Loading...</p>}
     <ul>
-      {filterContactsContacts?.map(({ name, id, number }) => {
+      {filterContactsContacts?.map(({ name, id, phone }) => {
         return (
           <li key={id} name={id}>
             <p>
-              {name}: {number}
+              {name}: {phone}
             </p>
             <button
               type="button"
